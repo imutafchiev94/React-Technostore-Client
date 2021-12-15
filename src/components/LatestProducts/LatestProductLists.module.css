@@ -1,0 +1,31 @@
+.latestProductsControlLeft i {
+    background: none repeat scroll 0 0 #FE980F;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 4px 10px;
+}
+
+.latestProductsControlRight i {
+    background: none repeat scroll 0 0 #FE980F;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 4px 10px;
+}
+
+.latestProductsControlLeft {
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    margin-left: 0%
+}
+
+.latestProductsControlRight {
+    position: absolute;
+    top: 40%;
+    right: 0%;
+    margin-right: 2%
+}
+
+.latestProdcuts {
+    margin: 5%
+}

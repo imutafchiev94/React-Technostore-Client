@@ -1,0 +1,21 @@
+.productImageWrapper {
+    border: 1px solid #F7F7F5;
+    overflow: hidden;
+    margin-bottom: 30px;
+    height: 400px;
+    width: 400px;
+}
+
+.singleProduct {
+    position: relative;
+    width: 25em;
+}
+
+.singleProduct div {
+    padding: 5%;
+}
+
+.productImage {
+    width: 250px;
+    height: 250px;
+}

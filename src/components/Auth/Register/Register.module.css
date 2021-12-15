@@ -1,0 +1,40 @@
+
+
+.container {
+    width: 60%;
+    margin-left: 20%;
+}
+
+.required::after{
+    content: " *";
+    color: red;
+};
+
+.formControl {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.formControl input[type=file] {
+    background-color: #fff;
+    text-align: center;
+}
+
+.formControl button {
+    margin-left: 45%;
+    margin-bottom: 3%;
+}
+
+.registerImg {
+    margin-bottom: 3%;
+    width: 25%;
+}
+
+.register {
+    display: block;
+    overflow: hidden;
+}
+
+.text {
+    margin-bottom: 4%;
+}
