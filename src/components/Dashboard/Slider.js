@@ -17,7 +17,7 @@ const Slider = () => {
 						<div className="carousel-inner">
 							<div className="item active">
 								<div className="col-sm-6" style={{height: "500px"}}>
-									<h1><span>Techno</span>Store</h1>
+								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Laptops. We have Gamming Laptops, Laptops for work, Laptops for Everyday use and more.</p>
 									<button type="button" className="btn btn-default get">Get it now</button>
@@ -28,7 +28,7 @@ const Slider = () => {
 							</div>
 							<div className="item">
 								<div className="col-sm-6" style={{height: "500px"}}>
-									<h1><span>Techno</span>Store</h1>
+								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Smartphons. We have Smartphones with very good camera, Smartphones with very good CPU, Smartphones for Everyday use and more. </p>
 									<button type="button" className="btn btn-default get">Get it now</button>
@@ -40,7 +40,7 @@ const Slider = () => {
 							
 							<div className="item">
 								<div className="col-sm-6" style={{height: "500px"}}>
-									<h1><span>Techno</span>Store</h1>
+								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Tablets. We have Tablets with large screens, Graphic Tablets, Tablets for Everyday use and more.</p>
 									<button type="button" className="btn btn-default get">Get it now</button>

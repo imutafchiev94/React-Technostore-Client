@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom';
 const CategoryNavigationElement = ({categoryTitle, subCategories}) => {
-    let index = 1;
     return (
         <>
         <Link to='/'>{categoryTitle}<i className="fa fa-angle-down"></i></Link>

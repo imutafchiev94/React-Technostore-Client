@@ -772,7 +772,6 @@ h2.title:before {
     background-color: #F2F2F2;
     margin-top: 40px;
     overflow: hidden;
-    padding-top: 20px;
     position: relative;
 }
 
@@ -782,13 +781,10 @@ h2.title:before {
 
 .well {
     background-color: #FFFFFF;
-    border: 1px solid #F7F7F0;
-    border-radius: 4px;
     -webkit-box-shadow: none;
     box-shadow: none;
     margin-bottom: 20px;
     min-height: 20px;
-    padding: 35px;
 }
 
 .tooltip-inner {
