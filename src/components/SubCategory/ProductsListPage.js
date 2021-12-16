@@ -1,7 +1,7 @@
-import {useState, useEffect} from 'react';
+
 import Advertisment from './Advertisment';
 import styles from './ProductsListPage.module.css';
-import * as productsService from '../../services/productService';
+
 import BrandsList from './BrandsList';
 import ShippingAdvertisment from './ShippingAdvertisment';
 import ProductsList from './ProductsList'
@@ -9,16 +9,7 @@ import ProductsList from './ProductsList'
 const ProductsListPage = () => {
     
 
-	const [products, setProducts] = useState([]);
 
-	useEffect(() => {
-		productsService.getAllProductsFromSubCategory("61aa435b5b0150275cf0693d")
-		.then(result => {
-			setProducts(result);
-		})
-	},[])
-
-	console.log(products);
 
     return (
         <>   
@@ -29,7 +20,7 @@ const ProductsListPage = () => {
 				<div className="col-sm-3">
 					<div className="left-sidebar">
 					
-						<BrandsList products={products}/>
+						<BrandsList />
 
 						<div className="price-range row">
 							<h2>Price Range</h2>
@@ -47,7 +38,7 @@ const ProductsListPage = () => {
 						
 					</div>
 				</div>
-				<ProductsList products={products} />
+				<ProductsList/>
 				
 			</div>
 		</div>

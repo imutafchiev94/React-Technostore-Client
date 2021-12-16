@@ -11,13 +11,15 @@ const BrandsList = ({products}) => {
 		})
 	}, []);
 
+    let allBrands = [...new Set(brands)];
+
     return (
         <div className="brands_products">
 							<h2>Brands</h2>
 							<div className="brands-name">
 								<ul className="nav nav-pills nav-stacked">
-                                {brands.length > 0 ? 
-                                brands.map(x => <li key={x}><Link to=""> <span className="pull-right">({products.filter(p => p.brand === x).length})</span>{x}</Link></li>)
+                                {allBrands.length > 0 ? 
+                                allBrands.map(x => <li key={x}><Link to=""> <span className="pull-right">({brands.filter(b => b === x).length})</span>{x}</Link></li>)
                             : <></>}
 								</ul>
 							</div>

@@ -7,6 +7,7 @@ import Register from './components/Auth/Register/Register';
 import { Route, Routes } from 'react-router-dom';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import ProductsListPage from './components/SubCategory/ProductsListPage';
+import ProductDetailsPage from './components/ProductDetails/ProductDetailsPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/store" element={<ProductsListPage />} />
+        <Route path="/product" element={<ProductDetailsPage />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </main>

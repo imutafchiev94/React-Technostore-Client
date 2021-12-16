@@ -1,7 +1,22 @@
 import {Link} from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import ProductListCard from './ProductListCard';
+import * as productsService from '../../services/productService';
 
-const ProductsList = ({products}) => {
+const ProductsList = () => {
+
+
+    const [products, setProducts] = useState([]);
+
+	useEffect(() => {
+		productsService.getAllProductsFromSubCategory("61aa435b5b0150275cf0693d")
+		.then(result => {
+			setProducts(result);
+		})
+	},[])
+
+	console.log(products);
+
     const paginationNumbers = Math.ceil(products.length / 9);
 
     const pages = [];
@@ -10,15 +25,15 @@ const ProductsList = ({products}) => {
         pages.push(index);
     }
 
-    products = products.slice(0, 9);
+    let allproducts = products.slice(0, 9);
 
     return (
         <div className="col-sm-9 padding-right">
 					<div className="features_items">
 						<h2 className="title text-center"> Items</h2>
 						
-                        {products.length > 0 ? 
-                        products.map(x => <ProductListCard key={x._id} product={x} />)
+                        {allproducts.length > 0 ? 
+                        allproducts.map(x => <ProductListCard key={x._id} product={x} />)
                     : <p>There have no products!</p>}
 
 						
