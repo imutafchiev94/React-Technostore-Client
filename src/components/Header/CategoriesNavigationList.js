@@ -11,6 +11,7 @@ const CategoriesNavigationList =({categoryName, subCategories}) => {
         setCategories(result);
       });
     }, []);
+    
     return (
         <ul className="nav navbar-nav collapse navbar-collapse">
         <li>

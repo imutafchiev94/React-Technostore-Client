@@ -9,12 +9,18 @@ import PageNotFound from './components/PageNotFound/PageNotFound';
 import ProductsListPage from './components/SubCategory/ProductsListPage';
 import ProductDetailsPage from './components/ProductDetails/ProductDetailsPage';
 import CartPage from './components/Cart/CartPage';
-import AdminProductsList from './components/Admin/ProductsList/AdminProductsList';
-import AdminSubCategoriesList from './components/Admin/SubCategoriesList/AdminSubCategoriesList';
+import AdminProductsList from './components/Admin/Products/ProductsList/AdminProductsList';
+import AdminSubCategoriesList from './components/Admin/SubCategories/SubCategoriesList/AdminSubCategoriesList';
 import AdminCategories from './components/Admin/Categories/AdminCategories';
 import AdminCategoriesList from './components/Admin/Categories/CategoriesList/AdminCategoriesList';
 import AdminCreateCategory from './components/Admin/Categories/CreateCategory/AdminCreateCategory';
 import AdminEditCategory from './components/Admin/Categories/EditCategory/AdminEditcategory';
+import AdminProducts from './components/Admin/Products/AdminProducts';
+import AdminProductCreate from './components/Admin/Products/ProductCreate/AdminProductCreate';
+import AdminProductEdit from './components/Admin/Products/ProductEdit/AdminProductEdit';
+import AdminSubCategories from './components/Admin/SubCategories/AdminSubCategories';
+import AdminSubCategoryCreate from './components/Admin/SubCategories/SubCategoryCreate/AdminSubCategoryCreate';
+import AdminSubCategoryEdit from './components/Admin/SubCategories/SubCategoryEdit/AdminSubCategoryEdit';
 
 
 function App() {
@@ -34,8 +40,16 @@ function App() {
             <Route path="create" element={<AdminCreateCategory />} />
             <Route path="edit/:categoryId" element={<AdminEditCategory />} />  
         </Route>
-        <Route path="admin/products" element={<AdminProductsList />} />
-        <Route path="admin/subcategories" element={<AdminSubCategoriesList />} />
+        <Route path="admin/products" element={<AdminProducts />} >
+            <Route path="" element={<AdminProductsList />} />
+            <Route path="create" element={<AdminProductCreate />} />
+            <Route path="edit/:productId" element={<AdminProductEdit />} />    
+        </Route>
+        <Route path="admin/subcategories" element={<AdminSubCategories />} >
+            <Route path="" element={<AdminSubCategoriesList />} />
+            <Route path="create" element={<AdminSubCategoryCreate />} />
+            <Route path="edit/:subCategoryId" element={<AdminSubCategoryEdit />} />  
+        </Route>
         <Route path="/*" element={<PageNotFound />} />
         
       </Routes>

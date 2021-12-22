@@ -1,27 +1,25 @@
 import {Card, Table, Button} from 'react-bootstrap';
 import React, {useState, useEffect} from 'react';
-import * as categoryService from '../../../../services/categoryService';
+import * as subCategoryService from '../../../../services/subCategoryService';
 import {Link} from 'react-router-dom';
 import Spinner  from '../../../Spinner/Spinner';
-import styles from './AdminCategoriesList.module.css'
- 
-;
-const AdminCategoriesList = () => {
-    const [categories, setCategories] = useState([]);
+import styles from './AdminSubCategoriesList.module.css'
+const AdminSubCategoriesList = () => {
+    const [subCategories, setSubCategories] = useState([]);
     const [isDeleted, setIsDeleted] = useState(false);
 
     useEffect(() => {
-        categoryService.getAll()
+        subCategoryService.getAll()
         .then(result => {
-            setCategories(result);
+            setSubCategories(result);
         })
 
     },[isDeleted])
 
 
-    const onclickDeleteButton = (e, category) => {
+    const onclickDeleteButton = (e, subCategory) => {
         e.preventDefault();
-        categoryService.deleteCategory(category._id)
+        subCategoryService.deleteSubCategory(subCategory._id)
         .then(result => {
             setIsDeleted(true)
         })
@@ -29,7 +27,7 @@ const AdminCategoriesList = () => {
 
 
 
-    if(Object.keys(categories).length < 1) {
+    if(subCategories.length < 1) {
         return (<Spinner />)
     }
     return (
@@ -38,10 +36,10 @@ const AdminCategoriesList = () => {
             <Card.Header className={styles.cardHeader}>
 
                 <h1 className={styles.pageHeader}>
-                    Categories
+                    SubCategories
                 </h1>
 
-                <Link to="create" className="btn btn-success">Create Category</Link>
+                <Link to="create" className="btn btn-success">Create SubCategory</Link>
             </Card.Header>
             <Card.Body>
                 <Table striped bordered hover className={styles.table}>
@@ -49,13 +47,15 @@ const AdminCategoriesList = () => {
                         <tr className={styles.tableHeader}>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Category</th>
                             <th>Actions</th>
                         </tr>
                         {
-                            categories.map(x => 
+                            subCategories.map(x => 
                             <tr key={x._id} className={styles.actions}>
                                 <td>{x.title}</td>
                                 <td>{x.description}</td>
+                                <td>{x.category.title}</td>
                                 <td><Link to={`edit/${x._id}`} className="btn btn-warning">Edit</Link>
                                     <Button variant="danger" onClick={(e) => {onclickDeleteButton(e, x)}}>Delete</Button>
                                 </td>
@@ -68,5 +68,4 @@ const AdminCategoriesList = () => {
         </>
     )
 }
-
-export default AdminCategoriesList;
+export default AdminSubCategoriesList;

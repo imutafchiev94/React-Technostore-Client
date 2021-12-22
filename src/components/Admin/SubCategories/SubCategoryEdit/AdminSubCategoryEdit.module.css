@@ -1,0 +1,27 @@
+.createForm {
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    padding: 2%;
+}
+
+.title {
+    margin-top: 4%;
+}
+
+.createForm input {
+    background-color: #f3f3f3;
+    border: medium none;
+    color: #696763;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    height: 40px;
+    margin-bottom: 10px;
+    outline: medium none;
+    padding-left: 10px;
+    width: 100%;
+}
