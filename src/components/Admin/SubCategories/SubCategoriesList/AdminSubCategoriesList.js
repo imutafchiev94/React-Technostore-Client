@@ -13,7 +13,7 @@ const AdminSubCategoriesList = () => {
         .then(result => {
             setSubCategories(result);
         })
-
+        setIsDeleted(false);
     },[isDeleted])
 
 

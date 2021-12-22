@@ -15,7 +15,7 @@ const AdminCategoriesList = () => {
         .then(result => {
             setCategories(result);
         })
-
+        setIsDeleted(false);
     },[isDeleted])
 
 
