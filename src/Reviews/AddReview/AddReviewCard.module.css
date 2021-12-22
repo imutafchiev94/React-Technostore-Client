@@ -1,0 +1,41 @@
+.reviewTitle {
+    background: #F0F0E9;
+    border: 0 none;
+    color: #A6A6A1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    outline: medium none;
+    padding: 8px;
+    width: 100%;
+    display: block;
+}
+
+.reviewText {
+    color: #363432;
+}
+
+
+
+
+.reviewContent {
+    background: #F0F0E9;
+    border: medium none;
+    color: #A6A6A1;
+    height: 195px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    outline: medium none;
+    padding-left: 10px;
+    padding-top: 15px;
+    resize: none;
+    width: 99.5%;
+}
+
+.reviewForm button {
+    background: #FE980F;
+    border: 0 none;
+    border-radius: 0;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}

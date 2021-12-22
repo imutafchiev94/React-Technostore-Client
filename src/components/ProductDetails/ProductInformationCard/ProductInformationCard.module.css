@@ -1,0 +1,26 @@
+.star {
+    color: #FE980F;
+}
+
+.star :hover {
+    color: green;
+}
+
+.quantity {
+    border: 1px solid #DEDEDC;
+    color: #696763;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    height: 33px;
+    outline: medium none;
+    text-align: center;
+    width: 15%;
+    padding: 2%;
+    float: left;
+}
+
+.addToCart {
+    margin-top: 2%;
+    width: 50%;
+}

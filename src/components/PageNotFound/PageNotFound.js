@@ -1,7 +1,9 @@
 import {Link} from 'react-router-dom'
+import Spinner from '../Spinner/Spinner';
 
 const PageNotFound = () => {
     return (
+		
         <div className="container text-center">
 		<div className="content-404">
 			<img src="https://res.cloudinary.com/hellios94/image/upload/v1639558646/Technostore/7381254_oiwa1y.png" className="img-responsive" alt="" />

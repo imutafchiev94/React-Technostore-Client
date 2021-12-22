@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from './Header.module.css';
+import './Header.css';
 
 import CategoriesNavigationList from "./CategoriesNavigationList";
 
@@ -8,19 +9,15 @@ const Header = () => {
     <header id="header" className={styles.header}>
       <div className="header-bottom">
         <div className="container">
-          <div className="row">
-            <div className="col-md-5">
+          <div className="row rowHeader">
+            <div className="col-md-10">
               <div className="mainmenu pull-left">
                 <CategoriesNavigationList/>
               </div>
               </div>
-            <div className="col-md-1">
-              <div className="search_box pull-left">
-                <input type="text" placeholder="Search" />
-              </div>
-            </div>
+
             
-            <div className="col-md-6">
+            <div className="col-md-2">
               <div className="shop-menu clearfix pull-right">
                 <ul className="nav navbar-nav">
                   <li>

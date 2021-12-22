@@ -1,0 +1,22 @@
+.tableHeader th {
+    text-align: center;
+}
+
+.table {
+    margin-bottom: 18%;
+}
+
+.actions button {
+    margin: 1%;
+}
+
+.cardHeader a{
+    position: relative;
+    left: 38%;
+    margin-bottom: 1%;
+}
+
+.pageHeader {
+    display: inline-block;
+    
+}

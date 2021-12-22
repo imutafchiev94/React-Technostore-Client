@@ -17,10 +17,10 @@ const Slider = () => {
 						<div className="carousel-inner">
 							<div className="item active">
 								<div className="col-sm-6" style={{height: "500px"}}>
-								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
+								<img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" />
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Laptops. We have Gamming Laptops, Laptops for work, Laptops for Everyday use and more.</p>
-									<button type="button" className="btn btn-default get">Get it now</button>
+									<Link to="/category/61a5f90076464308d8e3a4a9" className="btn btn-default get">Get it now</Link>
 								</div>
 								<div className="col-sm-6">
 									<img src="https://res.cloudinary.com/hellios94/image/upload/v1639062806/Technostore/lenovo-legion-5_yfkqbl.png" style={{marginTop: "90px"}} className="girl img-responsive" alt="Laptop" />
@@ -28,10 +28,10 @@ const Slider = () => {
 							</div>
 							<div className="item">
 								<div className="col-sm-6" style={{height: "500px"}}>
-								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
+								<img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" />
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Smartphons. We have Smartphones with very good camera, Smartphones with very good CPU, Smartphones for Everyday use and more. </p>
-									<button type="button" className="btn btn-default get">Get it now</button>
+									<Link to="/category/61aa435b5b0150275cf0693d" className="btn btn-default get">Get it now</Link>
 								</div>
 								<div className="col-sm-6">
 									<img src="https://res.cloudinary.com/hellios94/image/upload/c_scale,w_350/v1639480435/Technostore/8916577320990_jozv6b.png" style={{marginTop: "90px"}} className="girl img-responsive" alt="Smartphone" />
@@ -40,10 +40,10 @@ const Slider = () => {
 							
 							<div className="item">
 								<div className="col-sm-6" style={{height: "500px"}}>
-								<Link to="/"><img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" /></Link>
+								<img src="https://res.cloudinary.com/hellios94/image/upload/v1639561291/Technostore/Techno_2_abazr5.png" className={styles.logo} alt="logo" />
 									<h2>The best online store for technologies</h2>
 									<p>Here you can find a lot of different kind of Tablets. We have Tablets with large screens, Graphic Tablets, Tablets for Everyday use and more.</p>
-									<button type="button" className="btn btn-default get">Get it now</button>
+									<Link to="/category/61aa435b5b0150275cf0693d" className="btn btn-default get">Get it now</Link>
 								</div>
 								<div className="col-sm-6">
 									<img src="https://res.cloudinary.com/hellios94/image/upload/v1639480853/Technostore/wacom-pen-tablet-500x500_tig7vx.png" style={{marginTop: "90px"}} className="girl img-responsive" alt="Tablet" />

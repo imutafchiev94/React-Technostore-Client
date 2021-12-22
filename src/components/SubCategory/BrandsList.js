@@ -1,15 +1,18 @@
 import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import * as productsService from '../../services/productService';
 
 const BrandsList = ({products}) => {
+
+	const {categoryId} = useParams();
+	console.log(categoryId);
     const [brands, setBrands] = useState([]);
     useEffect(() => {
-		productsService.getAllBrands("61aa435b5b0150275cf0693d")
+		productsService.getAllBrands(categoryId)
 		.then(result => {
 			setBrands(result)
 		})
-	}, []);
+	}, [categoryId]);
 
     let allBrands = [...new Set(brands)];
 

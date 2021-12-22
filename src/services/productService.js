@@ -26,6 +26,6 @@ export function getProduct(productId) {
 }
 
 export function addRate(productId, rate) {
-    return fetch(`${baseUrl}/product/rate`, {method: 'POST', body: JSON.stringify({"productId": `${productId}`, 'rate': rate})})
+    return fetch(`${baseUrl}/product/rate`, {method: 'POST', headers: {'Content-Type': 'application/json' }, body: JSON.stringify({"productId": `${productId}`, 'rate': rate})})
     .then(res => res.json())
 }

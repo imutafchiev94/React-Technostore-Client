@@ -1,19 +1,21 @@
 import {Link} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import ProductListCard from './ProductListCard';
+import { useParams } from 'react-router-dom';
 import * as productsService from '../../services/productService';
 
 const ProductsList = () => {
 
+    const {categoryId} = useParams();
 
     const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		productsService.getAllProductsFromSubCategory("61aa435b5b0150275cf0693d")
+		productsService.getAllProductsFromSubCategory(categoryId)
 		.then(result => {
 			setProducts(result);
 		})
-	},[])
+	},[categoryId])
 
 	console.log(products);
 

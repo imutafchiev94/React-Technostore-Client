@@ -9,7 +9,7 @@ const ProductListCard = ({product}) => {
           <div className="productinfo text-center">
             <img src={product.imageUrl} className={styles.productImage} alt={product.modelName} />
             <h2>{"$" + product.price}</h2>
-            <Link to="/"> <p>{product.brand} {product.modelName}</p> </Link>
+            <Link to={`/details/${product._id}`}> <p>{product.brand} {product.modelName}</p> </Link>
             <Link
               onClick={(event) => event.preventDefault()}
               to="#"

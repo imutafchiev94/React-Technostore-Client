@@ -1,5 +1,6 @@
 import LatestProductsList from '../LatestProducts/LatestProductsList';
 import MostRatedProductsList from '../MostRatedProducts/MostRatedProoductList';
+
 import AboutUs from './AboutUs';
 import Slider from './Slider';
 
