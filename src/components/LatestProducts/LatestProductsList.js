@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import LatestProductCard from "./LatestProductCard/LatestProductCard";
 import * as productService from "../../services/productService";
 
+
 const LatestProductsList = () => {
   const [LatestProducts, setLatestProducts] = useState([]);
 

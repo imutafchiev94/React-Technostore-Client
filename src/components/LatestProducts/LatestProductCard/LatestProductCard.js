@@ -1,7 +1,7 @@
 import styles from './LatestProductCard.module.css';
 import {Link} from 'react-router-dom';
 import { useAuthContext } from '../../../context/AuthContext';
-import { useCartContext } from '../../context/CartContext';
+import { useCartContext } from '../../../context/CartContext';
 const LatestProductCard = ({product}) => {
   const {isAuthenticated} = useAuthContext();
   const {addToCart} = useCartContext();

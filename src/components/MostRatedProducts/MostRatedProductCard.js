@@ -1,6 +1,6 @@
 import styles from './MostRatedProductCard.module.css';
 import {Link} from 'react-router-dom';
-import { useAuthContext } from '../../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { useCartContext } from '../../context/CartContext';
 
 const MostRatedProductCard = ({product}) => {
