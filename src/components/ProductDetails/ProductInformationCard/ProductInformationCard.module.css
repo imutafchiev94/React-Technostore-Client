@@ -2,6 +2,10 @@
     color: #FE980F;
 }
 
+.starAuthenticated {
+    color: #FE980F;
+}
+
 .star :hover {
     color: green;
 }

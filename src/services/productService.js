@@ -6,7 +6,7 @@ export function getLatestProducts() {
 }
 
 export function getMostRatedProducts() {
-    return fetch(`${baseUrl}/product/mostrated`)
+    return fetch(`${baseUrl}/product/mostrated/products`)
     .then(res => res.json());
 }
 

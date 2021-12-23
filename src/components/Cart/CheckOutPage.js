@@ -1,244 +1,127 @@
-import {Link} from 'react-router-dom';
+import {Form, FloatingLabel, Button} from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import styles from './CheckOutPage.module.css';
+import * as orderService from '../../services/orderService';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
+import { useCartContext } from '../../context/CartContext';
+import Spinner from '../Spinner/Spinner';
 
 const CheckOutPage = () => {
+
+
+    const navigate = useNavigate();
+	const {user} = useAuthContext();
+	const {cart, clearCart} = useCartContext();
+    const [countries, setCountries] = useState([]);
+	const [cities, setCities] = useState([]); 
+	const [amount, setAmount] = useState(0);
+
+
+	useEffect(() => {
+		fetch('https://api.countrystatecity.in/v1/countries', {method: "GET", headers: {
+			'X-CSCAPI-KEY': 'Y1B0R0l0Zk1GeU5HdlFIdFJSOVhZRjczNUtadlExek5ZUFBudFFUVA=='
+		}}).then(res => res.json())
+		.then(result => 
+				setCountries(result)
+			);
+
+			console.log(user);
+		let sum = 0;
+		for (let i = 0; i < cart.products.length; i++) {
+			sum += cart.products[i].price;
+		}
+		setAmount(sum);
+		
+	}, [])
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let formData = new FormData(event.currentTarget);
+        
+		let firstName = formData.get('firstName');
+		let lastName = formData.get('lastName');
+		let country = formData.get('country');
+		let city = formData.get('city');
+		let address = formData.get('address');
+
+		orderService.create({firstName, lastName, country, city, address, amount}, cart.products, user.acessToken)
+		.then(result => {
+			clearCart();
+			navigate('/');
+		}).catch(err => {
+			clearCart();
+			navigate('/');
+		}) 
+      };
+
+	  const getCities = (e) => {
+		  let country = e.currentTarget.value;
+
+		  fetch(` https://api.countrystatecity.in/v1/countries/${country}/cities`, {method: "GET", headers: {
+			'X-CSCAPI-KEY': 'Y1B0R0l0Zk1GeU5HdlFIdFJSOVhZRjczNUtadlExek5ZUFBudFFUVA=='
+		}}).then(res => res.json())
+		.then(result => {
+				setCities(result)
+		});
+	  }
+
+     if(countries.length < 1)
+	 {
+		 return(<Spinner />)
+	 }
+
     return (
-        <section id="cart_items">
-		<div className="container">
-			<div className="breadcrumbs">
-				<ol className="breadcrumb">
-				  <li><Link onClick={(event) => event.preventDefault()} to="#">Home</Link></li>
-				  <li className="active">Check out</li>
-				</ol>
-			</div>
+            <>
+            <h1 className={styles.title}>Create Category</h1>
+        <div className={styles.createForm}>
+            
+        <Form  method="POST" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control 
+                type="text" 
+                name="firstName" 
+                id="firstName" 
+                required
+                 />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control 
+                type="text" 
+                name="lastName" 
+                id="lastName" 
+                required
+                />
+            </Form.Group>
+			<FloatingLabel controlId="floatingSelect" label="Country" />
+            <Form.Select aria-label="Floating label select example" onChange={getCities} name="country">
+				<option value="0">Please Select Country</option>
+                {countries.map(x => 
+                    <option key={x.id} value={x.iso2}>{x.name}</option>
+                )}
+            </Form.Select>
+			<FloatingLabel controlId="floatingSelect" label="City" />
+			<Form.Select aria-label="Floating label select example" name="city">
+                {cities.map(x => 
+                    <option key={x.id} value={x.name}>{x.name}</option>
+                )}
+            </Form.Select>
+			<Form.Group className="mb-3">
+                <Form.Label>Address</Form.Label>
+                <Form.Control 
+                type="text" 
+                name="address" 
+                id="address" 
+                required
+                />
+			</Form.Group>
+            <Button type="submit">Create Order</Button>
+        </Form>
+        </div>
+        </>
+    )
+};
 
-			<div className="step-one">
-				<h2 className="heading">Step1</h2>
-			</div>
-			<div className="checkout-options">
-				<h3>New User</h3>
-				<p>Checkout options</p>
-				<ul className="nav">
-					<li>
-						<label><input type="checkbox"/> Register Account</label>
-					</li>
-					<li>
-						<label><input type="checkbox"/> Guest Checkout</label>
-					</li>
-					<li>
-						<Link onClick={(event) => event.preventDefault()} to=""><i className="fa fa-times"></i>Cancel</Link>
-					</li>
-				</ul>
-			</div>
-
-			<div className="register-req">
-				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-			</div>
-
-			<div className="shopper-informations">
-				<div className="row">
-					<div className="col-sm-3">
-						<div className="shopper-info">
-							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name"/>
-								<input type="text" placeholder="User Name"/>
-								<input type="password" placeholder="Password"/>
-								<input type="password" placeholder="Confirm password"/>
-							</form>
-							<Link className="btn btn-primary" onClick={(event) => event.preventDefault()} to="">Get Quotes</Link>
-							<Link className="btn btn-primary" onClick={(event) => event.preventDefault()} to="">Continue</Link>
-						</div>
-					</div>
-					<div className="col-sm-5 clearfix">
-						<div className="bill-to">
-							<p>Bill To</p>
-							<div className="form-one">
-								<form>
-									<input type="text" placeholder="Company Name"/>
-									<input type="text" placeholder="Email*"/>
-									<input type="text" placeholder="Title"/>
-									<input type="text" placeholder="First Name *"/>
-									<input type="text" placeholder="Middle Name"/>
-									<input type="text" placeholder="Last Name *"/>
-									<input type="text" placeholder="Address 1 *"/>
-									<input type="text" placeholder="Address 2"/>
-								</form>
-							</div>
-							<div className="form-two">
-								<form>
-									<input type="text" placeholder="Zip / Postal Code *"/>
-									<select>
-										<option>-- Country --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<select>
-										<option>-- State / Province / Region --</option>
-										<option>United States</option>
-										<option>Bangladesh</option>
-										<option>UK</option>
-										<option>India</option>
-										<option>Pakistan</option>
-										<option>Ucrane</option>
-										<option>Canada</option>
-										<option>Dubai</option>
-									</select>
-									<input type="password" placeholder="Confirm password"/>
-									<input type="text" placeholder="Phone *"/>
-									<input type="text" placeholder="Mobile Phone"/>
-									<input type="text" placeholder="Fax"/>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div className="col-sm-4">
-						<div className="order-message">
-							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<label><input type="checkbox"/> Shipping to bill address</label>
-						</div>	
-					</div>					
-				</div>
-			</div>
-			<div className="review-payment">
-				<h2>Review & Payment</h2>
-			</div>
-
-			<div className="table-responsive cart_info">
-				<table className="table table-condensed">
-					<thead>
-						<tr className="cart_menu">
-							<td className="image">Item</td>
-							<td className="description"></td>
-							<td className="price">Price</td>
-							<td className="quantity">Quantity</td>
-							<td className="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td className="cart_product">
-								<Link onClick={(event) => event.preventDefault()} to=""><img src="images/cart/one.png" alt=""/></Link>
-							</td>
-							<td className="cart_description">
-								<h4><Link onClick={(event) => event.preventDefault()} to="">Colorblock Scuba</Link></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td className="cart_price">
-								<p>$59</p>
-							</td>
-							<td className="cart_quantity">
-								<div className="cart_quantity_button">
-									<Link className="cart_quantity_up" onClick={(event) => event.preventDefault()} to=""> + </Link>
-									<input className="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"/>
-									<Link className="cart_quantity_down" onClick={(event) => event.preventDefault()} to=""> - </Link>
-								</div>
-							</td>
-							<td className="cart_total">
-								<p className="cart_total_price">$59</p>
-							</td>
-							<td className="cart_delete">
-								<Link className="cart_quantity_delete" onClick={(event) => event.preventDefault()} to=""><i className="fa fa-times"></i></Link>
-							</td>
-						</tr>
-
-						<tr>
-							<td className="cart_product">
-								<Link onClick={(event) => event.preventDefault()} to=""><img src="images/cart/two.png" alt=""/></Link>
-							</td>
-							<td className="cart_description">
-								<h4><Link onClick={(event) => event.preventDefault()} to="">Colorblock Scuba</Link></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td className="cart_price">
-								<p>$59</p>
-							</td>
-							<td className="cart_quantity">
-								<div className="cart_quantity_button">
-									<Link className="cart_quantity_up" onClick={(event) => event.preventDefault()} to=""> + </Link>
-									<input className="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"/>
-									<Link className="cart_quantity_down" onClick={(event) => event.preventDefault()} to=""> - </Link>
-								</div>
-							</td>
-							<td className="cart_total">
-								<p className="cart_total_price">$59</p>
-							</td>
-							<td className="cart_delete">
-								<Link className="cart_quantity_delete" onClick={(event) => event.preventDefault()} to=""><i className="fa fa-times"></i></Link>
-							</td>
-						</tr>
-						<tr>
-							<td className="cart_product">
-								<Link onClick={(event) => event.preventDefault()} to=""><img src="images/cart/three.png" alt=""/></Link>
-							</td>
-							<td className="cart_description">
-								<h4><Link onClick={(event) => event.preventDefault()} to="">Colorblock Scuba</Link></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td className="cart_price">
-								<p>$59</p>
-							</td>
-							<td className="cart_quantity">
-								<div className="cart_quantity_button">
-									<Link className="cart_quantity_up" onClick={(event) => event.preventDefault()} to=""> + </Link>
-									<input className="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"/>
-									<Link className="cart_quantity_down" onClick={(event) => event.preventDefault()} to=""> - </Link>
-								</div>
-							</td>
-							<td className="cart_total">
-								<p className="cart_total_price">$59</p>
-							</td>
-							<td className="cart_delete">
-								<Link className="cart_quantity_delete" onClick={(event) => event.preventDefault()} to=""><i className="fa fa-times"></i></Link>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table className="table table-condensed total-result">
-									<tr>
-										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
-									</tr>
-									<tr className="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>Free</td>										
-									</tr>
-									<tr>
-										<td>Total</td>
-										<td><span>$61</span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div className="payment-options">
-					<span>
-						<label><input type="checkbox"/> Direct Bank Transfer</label>
-					</span>
-					<span>
-						<label><input type="checkbox"/> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"/> Paypal</label>
-					</span>
-				</div>
-		</div>
-	</section> 
-    ) 
-}
-
-export default CheckOutPage;
+export default CheckOutPage

@@ -1,16 +1,35 @@
 import styles from './AddReviewCard.module.css';
-const AddReviewCard = () => {
+import * as productService from '../../services/productService';
+import {useNavigate} from 'react-router-dom';
+const AddReviewCard = ({productId}) => {
+
+	const navigate = useNavigate();
+
+	const addReview = (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.currentTarget);
+
+		let title = formData.get('title');
+		let content = formData.get('content');
+		console.log(formData);
+		productService.addReview(productId, {title, content})
+		.then(result => {
+			navigate(`/details/${productId}`);
+		})
+	}
+
     return (
         <div className="col-sm-12">
-		<p className={styles.reviewText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+		<p className={styles.reviewText}>Here you can write review for this product</p>
 			<p className={styles.reviewText}><b>Write Your Review</b></p>
 									
-									<form action="#" className={styles.reviewForm}>
+									<form method="Post" className={styles.reviewForm} onSubmit={addReview}>
 									
-											<input type="text" className={styles.reviewTitle} placeholder="Title"/>
+										<input type="text" name="title" className={styles.reviewTitle} placeholder="Title"/>
                                             
-										<textarea name="" className={styles.reviewContent} ></textarea>
-										<button type="button" className="btn btn-default pull-right">
+										<textarea  name="content" className={styles.reviewContent} ></textarea>
+										<button type="submit" className="btn btn-default pull-right">
 											Submit
 										</button>
 									</form>

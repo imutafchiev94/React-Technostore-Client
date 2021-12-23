@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import * as productsService from '../../services/productService';
 import Spinner from '../Spinner/Spinner';
 import {Tabs, Tab} from 'react-bootstrap';
+import { useAuthContext } from '../../context/AuthContext';
 
 const LatestProductsList = React.lazy(() => import('../LatestProducts/LatestProductsList'))
 const ProductDetailsCard = React.lazy(() => import('./ProductDetailsCard/ProductDetailsCard'));
@@ -17,6 +18,7 @@ const ProductDetailsPage = () => {
 	const {productId} = useParams()
     const [product, setProduct] = useState({});
 	const [tabKey, setTabKey] = useState('details');
+	const {isAuthenticated} = useAuthContext();
 
 	useEffect(() => {
 		productsService.getProduct(productId)
@@ -54,11 +56,13 @@ if(Object.keys(product).length === 0 && product.constructor === Object) {
         <ReviewList reviews={product.reviews} />
 		</Suspense>
       </Tab>
+	  {isAuthenticated ?
       <Tab eventKey="addReview" title="Add Review">
 	  <Suspense fallback={ <Spinner />}>
-        <AddReviewCard />
+        <AddReviewCard productId={product._id}/>
 		</Suspense>
       </Tab>
+		: <></>}
 		</Tabs>
 		<div className="col-md-12">
 		<Suspense fallback={ <Spinner />}>
